@@ -1,13 +1,53 @@
 <?php
 class math{
-    public static function getClosest($closeNumber,$numberArray){
+    public static function getClosest(int|float $closeNumber, array $numberArray):int|float|null{
         $closest = null;
-        foreach ($numberArray as $item) {
-            if($closest === null || abs($closeNumber - $closest) > abs($item - $closeNumber)) {
+        foreach($numberArray as $item){
+            if($closest === null || abs($closeNumber - $closest) > abs($item - $closeNumber)){
                 $closest = $item;
             }
         }
         return $closest;
+    }
+    public static function getClosestKey(array $data, int|float $target):?string{
+        $bestKey = null;
+        $bestDiff = null;
+
+        foreach($data as $key => $value){
+            $diff = abs($value - $target);
+            if ($bestDiff === null || $diff < $bestDiff) {
+                $bestKey = $key;
+                $bestDiff = $diff;
+            }
+        }
+
+        return $bestKey;
+    }
+    public static function getHighestKey(array $data, int|float $max):?string{
+        $bestKey = null;
+        $bestValue = null;
+
+        foreach($data as $key => $value){
+            if($value <= $max && ($bestValue === null || $value > $bestValue)){
+                $bestKey = $key;
+                $bestValue = $value;
+            }
+        }
+
+        return $bestKey;
+    }
+    public static function getLowestKey(array $data, int|float $min):?string{
+        $bestKey = null;
+        $bestValue = null;
+
+        foreach ($data as $key => $value) {
+            if ($value >= $min && ($bestValue === null || $value < $bestValue)) {
+                $bestKey = $key;
+                $bestValue = $value;
+            }
+        }
+
+        return $bestKey;
     }
     public static function tension_smooth_pulley(float $A_mass_kg, float $B_mass_kg, float $gravity = 9.81):float{
         $accel = self::acceleration_smooth_pulley($A_mass_kg,$B_mass_kg,$gravity);
