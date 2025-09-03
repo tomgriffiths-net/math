@@ -9,7 +9,7 @@ class math{
         }
         return $closest;
     }
-    public static function getClosestKey(array $data, int|float $target):?string{
+    public static function getClosestKey(array $data, int|float $target):mixed{
         $bestKey = null;
         $bestDiff = null;
 
@@ -23,7 +23,7 @@ class math{
 
         return $bestKey;
     }
-    public static function getHighestKey(array $data, int|float $max):?string{
+    public static function getHighestKey(array $data, int|float $max):mixed{
         $bestKey = null;
         $bestValue = null;
 
@@ -36,7 +36,7 @@ class math{
 
         return $bestKey;
     }
-    public static function getLowestKey(array $data, int|float $min):?string{
+    public static function getLowestKey(array $data, int|float $min):mixed{
         $bestKey = null;
         $bestValue = null;
 
